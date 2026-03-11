@@ -4,21 +4,693 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Stonefruit &mdash; Notes That Get Smarter Overnight</title>
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css">
+		<link rel="stylesheet" href="dist/theme/white.css">
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+		<style>
+			@font-face {
+				font-family: 'Inria Sans';
+				src: url('assets/fonts/InriaSans-Regular.ttf') format('truetype');
+				font-weight: 400;
+				font-style: normal;
+				font-display: swap;
+			}
+			@font-face {
+				font-family: 'Inria Sans';
+				src: url('assets/fonts/InriaSans-Italic.ttf') format('truetype');
+				font-weight: 400;
+				font-style: italic;
+				font-display: swap;
+			}
+			@font-face {
+				font-family: 'Inria Sans';
+				src: url('assets/fonts/InriaSans-Bold.ttf') format('truetype');
+				font-weight: 700;
+				font-style: normal;
+				font-display: swap;
+			}
+			:root {
+				--sf-peach: #b07d3b;
+				--sf-warm: #9a6c2f;
+				--sf-accent: #8d6530;
+				--sf-soft: #ede5d4;
+				--sf-green: #6a7e59;
+				--sf-bg-dark: #faf9f6;
+				--sf-bg-mid: #f0ece6;
+				--sf-text: #1c1917;
+				--sf-muted: #78716c;
+				--sf-border: #ddd8d0;
+				--sf-surface: #f0ece6;
+			}
+			.reveal {
+				font-family: 'Inria Sans', system-ui, sans-serif;
+				color: var(--sf-text);
+			}
+			.reveal h1,
+			.reveal h2,
+			.reveal h3,
+			.reveal h4,
+			.reveal h5,
+			.reveal h6 {
+				font-family: 'Inria Sans', system-ui, sans-serif;
+				font-weight: 700;
+				letter-spacing: -0.03em;
+				color: var(--sf-text);
+				text-transform: none;
+			}
+			.reveal strong {
+				color: var(--sf-peach);
+			}
+			.brand-lockup {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 1.1em;
+				margin-bottom: 1.2em;
+			}
+			.brand-symbol {
+				width: 92px;
+				height: auto;
+			}
+			.brand-wordmark {
+				width: min(620px, 72vw);
+				height: auto;
+			}
+			.pillar-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 1.2em;
+				text-align: left;
+				font-size: 0.62em;
+				max-width: 980px;
+				margin: 0 auto;
+			}
+			.pillar {
+				background: var(--sf-surface);
+				border: 1px solid var(--sf-border);
+				border-radius: 14px;
+				padding: 1em 1.1em;
+			}
+			.pillar h3 {
+				margin: 0 0 0.4em 0;
+				font-size: 1.1em;
+				color: var(--sf-accent);
+			}
+			.pillar p {
+				margin: 0;
+				color: var(--sf-muted);
+			}
+			.idea-card {
+				background: rgba(176, 125, 59, 0.08);
+				border-left: 4px solid var(--sf-peach);
+				padding: 0.6em 1em;
+				border-radius: 0 10px 10px 0;
+				text-align: left;
+				margin-bottom: 0.6em;
+			}
+			.idea-card strong {
+				color: var(--sf-peach);
+				display: block;
+				font-size: 1.1em;
+			}
+			.idea-card span {
+				font-size: 0.85em;
+				color: var(--sf-text);
+			}
+			.pitch-item {
+				font-size: 0.9em;
+				margin-bottom: 0.5em;
+			}
+			.pitch-item strong {
+				color: var(--sf-accent);
+			}
+			.strikethrough {
+				text-decoration: line-through;
+				color: #666;
+			}
+			.demo-placeholder {
+				border: 2px dashed rgba(176, 125, 59, 0.35);
+				border-radius: 16px;
+				padding: 2em;
+				background: rgba(176, 125, 59, 0.04);
+				color: var(--sf-muted);
+				font-style: italic;
+			}
+			.example-grid {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 1em;
+				max-width: 960px;
+				margin: 1em auto 0;
+				text-align: left;
+				font-size: 0.58em;
+			}
+			.example-panel {
+				background: var(--sf-surface);
+				border: 1px solid var(--sf-border);
+				border-radius: 14px;
+				padding: 1em 1.1em;
+			}
+			.example-panel pre {
+				margin: 0;
+				font-size: 0.95em;
+				line-height: 1.45;
+				color: var(--sf-text);
+			}
+			.example-panel h4 {
+				margin: 0 0 0.6em 0;
+				font-size: 1em;
+				color: var(--sf-accent);
+			}
+			.example-panel p,
+			.example-panel li {
+				color: var(--sf-text);
+			}
+			.two-up {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 1em;
+				max-width: 980px;
+				margin: 1em auto 0;
+				text-align: left;
+				font-size: 0.62em;
+			}
+			.callout {
+				background: var(--sf-surface);
+				border: 1px solid var(--sf-border);
+				border-radius: 14px;
+				padding: 1em 1.1em;
+			}
+			.callout h4 {
+				margin: 0 0 0.4em 0;
+				color: var(--sf-peach);
+			}
+			.callout p {
+				margin: 0;
+				color: var(--sf-text);
+			}
+			.platform-row {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				gap: 0.6em;
+				max-width: 900px;
+				margin: 1em auto 0;
+			}
+			.platform-chip {
+				border: 1px solid var(--sf-border);
+				border-radius: 999px;
+				padding: 0.35em 0.8em;
+				font-size: 0.6em;
+				color: var(--sf-text);
+				background: var(--sf-surface);
+			}
+			.big-quote {
+				max-width: 900px;
+				margin: 0.8em auto 0;
+				font-size: 0.95em;
+				line-height: 1.35;
+			}
+			.qr-card {
+				max-width: 760px;
+				margin: 1.2em auto 0;
+				padding: 1.2em;
+				border-radius: 20px;
+				background: var(--sf-surface);
+				border: 1px solid var(--sf-border);
+			}
+			.qr-card p {
+				margin: 0.35em 0;
+				font-size: 0.62em;
+				color: var(--sf-text);
+			}
+		</style>
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section data-visibility="hidden">Slide X</section>
-				<section>Slide 2</section>
+
+				<section data-background-color="var(--sf-bg-dark)" data-transition="fade">
+					<aside class="notes">
+						Thank you.
+
+						It is a little intimidating to go after two speakers who are both more accomplished than I am and, based on appearances, significantly stronger.
+
+						But I am going to do my best.
+
+						Before we start, I need to say happy birthday to my mom. She is here tonight. She would probably prefer that I not point her out, so I will respect that for about half a second.
+
+						That is my mom. Happy birthday, Mom.
+					</aside>
+				</section>
+
+				<section data-background-gradient="radial-gradient(ellipse at bottom, #f4eee5, #faf9f6)" data-transition="slide">
+					<h2 style="color: var(--sf-peach);">Computers are getting more intelligent</h2>
+					<p class="big-quote" style="color: var(--sf-text);">
+						In the last three years, a browser stopped feeling like a window to the web
+						and started feeling like a doorway into a machine that can reason with you.
+					</p>
+					<p class="fragment fade-up" style="color: var(--sf-muted); font-size: 0.62em; margin-top: 1.5em;">
+						visual: scaling laws chart + neural network graphic
+					</p>
+					<aside class="notes">
+						If you have opened a web browser at any point in the last three years, you have felt this shift.
+
+						Three years ago, you could ask Siri to play the new Taylor Swift album and get something like, "Sorry, I cannot help you tailor a suit."
+
+						Now you can ask ChatGPT to explain quantum physics, or explain why your life is falling apart, and it will usually do a pretty good job at both.
+					</aside>
+				</section>
+
+				<section data-background-color="var(--sf-bg-dark)">
+					<section>
+						<h2 style="color: var(--sf-peach);">AI changed the workflow</h2>
+						<p style="color: var(--sf-muted); font-size: 0.75em;">Coding, search, writing</p>
+						<aside class="notes">
+							Once that intelligence showed up, a lot of familiar tools started behaving very differently.
+						</aside>
+					</section>
+
+					<section data-auto-animate>
+						<h3 style="color: var(--sf-accent);">Coding</h3>
+						<p style="font-size: 0.9em;">A lot of engineers now ship code that started as an AI draft.</p>
+						<p class="fragment fade-up" style="color: var(--sf-muted); font-size: 0.62em; margin-top: 1.2em;">
+							visual: Claude Code / agentic coding screenshot
+						</p>
+						<aside class="notes">
+							Coding is the clearest example.
+
+							For a lot of engineers, AI is no longer a novelty. It is part of the development loop. It writes code, explains code, refactors code, and sometimes writes the bug report too.
+						</aside>
+					</section>
+
+					<section data-auto-animate>
+						<h3 style="color: var(--sf-accent);">Search</h3>
+						<p style="font-size: 0.9em;">I personally reach for Google a lot less than I used to.</p>
+						<p class="fragment fade-up" style="color: var(--sf-muted); font-size: 0.75em;">I ask a model first.</p>
+						<aside class="notes">
+							Search changed too.
+
+							I do not start with ten blue links nearly as often anymore. If I want to learn something, I usually ask a model first and refine from there.
+						</aside>
+					</section>
+
+					<section data-auto-animate>
+						<h3 style="color: var(--sf-accent);">Writing</h3>
+						<p style="font-size: 0.9em;">If you are a high school student with an essay due on <em>Jane Eyre</em>&hellip;</p>
+						<p class="fragment fade-up" style="font-size: 1.1em; color: var(--sf-peach);">No you don't.</p>
+						<p class="fragment fade-up" style="color: var(--sf-muted); font-size: 0.62em; margin-top: 1.2em;">
+							visual: prompt asking for a flawless Jane Eyre essay
+						</p>
+						<aside class="notes">
+							And of course writing changed.
+
+							If you are a high school student and you have an essay due on Jane Eyre, well... no, you do not. Not in the way previous generations did.
+						</aside>
+					</section>
+				</section>
+
+				<section data-background-color="var(--sf-bg-dark)">
+					<section>
+						<h2 style="color: var(--sf-peach);">One thing barely changed</h2>
+						<p style="font-size: 1.1em; color: var(--sf-accent);">How we handle notes</p>
+						<aside class="notes">
+							But there is one part of the computing experience that still feels weirdly frozen in time.
+						</aside>
+					</section>
+
+					<section>
+						<div class="idea-card fragment fade-up">
+							<strong>Grocery lists</strong>
+							<span>We still rewrite the same shopping list over and over again.</span>
+						</div>
+						<div class="idea-card fragment fade-up">
+							<strong>Lost context</strong>
+							<span>We still hunt for the note about that restaurant a friend recommended a month ago.</span>
+						</div>
+						<div class="idea-card fragment fade-up">
+							<strong>Folders</strong>
+							<span>We still file notes into folders like it is 1998 and someone from legal needs the Johnson case update by five.</span>
+						</div>
+						<p class="fragment fade-up" style="color: var(--sf-muted); font-size: 0.62em; margin-top: 1em;">
+							visual: notepad / very ugly OneNote screenshot / Costanza with the file
+						</p>
+						<aside class="notes">
+							We still write down grocery lists even though most of us are basically buying the same things every week.
+
+							We still try to find that note we wrote a month ago about a restaurant our friend recommended, except we cannot remember what we named it.
+
+							And we still put notes into folders like it is 1998 and Joe from legal is about to ask for an update on the Johnson case.
+
+							Sorry. I have been watching a lot of Seinfeld recently.
+						</aside>
+					</section>
+				</section>
+
+				<section data-background-gradient="radial-gradient(ellipse at top, #f2ece4, #faf9f6)" data-transition="zoom">
+					<h2 style="color: var(--sf-peach);">That makes no sense anymore</h2>
+					<p style="font-size: 0.9em; color: var(--sf-text); max-width: 850px; margin: 0.8em auto 0;">
+						If AI can rewrite a compiler, why am I still manually pulling action items out of meeting notes?
+					</p>
+					<p class="fragment fade-up" style="font-size: 0.75em; color: var(--sf-muted); margin-top: 1.3em;">
+						My engineer brain keeps insisting the computer should be doing more of this work for me.
+					</p>
+					<aside class="notes">
+						I use these tools heavily, and for years I kept running into the same question:
+
+						Why am I still doing this in such an antiquated way?
+
+						My engineer brain keeps telling me that the computer should be helping more than this.
+
+						We built systems that can rewrite the C compiler, and meanwhile I am still manually extracting to-do items from meeting notes like an animal.
+					</aside>
+				</section>
+
+				<section data-background-gradient="radial-gradient(ellipse at center, #f3ece2, #faf9f6)" data-transition="zoom">
+					<div class="brand-lockup">
+						<img class="brand-symbol" src="assets/brand/Symbol.svg" alt="Stonefruit symbol">
+						<img class="brand-wordmark" src="assets/brand/Wordmark.svg" alt="Stonefruit">
+					</div>
+					<p style="font-size: 1.05em; color: var(--sf-text);">A notes app that gets smarter overnight, on your hardware.</p>
+					<p class="fragment fade-up" style="color: var(--sf-muted); font-size: 0.72em; margin-top: 1.4em;">
+						Markdown. Self-hosted. Smart automation.
+					</p>
+					<aside class="notes">
+						So to resolve that tension, I built Stonefruit.
+
+						Stonefruit is a notes app that gets smarter overnight, on your own hardware, using markdown and automation.
+					</aside>
+				</section>
+
+				<section data-background-color="var(--sf-bg-dark)">
+					<h2 style="color: var(--sf-peach);">What makes Stonefruit different</h2>
+					<div class="pillar-grid" style="margin-top: 1.4em;">
+						<div class="pillar fragment fade-up">
+							<h3>Markdown</h3>
+							<p>Your notes are plain text, portable, and easy for both humans and models to work with.</p>
+						</div>
+						<div class="pillar fragment fade-up">
+							<h3>Self-hosted</h3>
+							<p>Your server handles sync and automation. Your notes stay on hardware you control.</p>
+						</div>
+						<div class="pillar fragment fade-up">
+							<h3>Overnight automations</h3>
+							<p>The app can keep organizing, indexing, and improving your notes while you are asleep.</p>
+						</div>
+					</div>
+					<aside class="notes">
+						There are three ideas underneath Stonefruit.
+
+						Markdown keeps the format durable and portable.
+
+						Self-hosting keeps your notes private and under your control.
+
+						And overnight automations are the part that actually makes the system feel intelligent.
+					</aside>
+				</section>
+
+				<section data-background-color="var(--sf-bg-dark)">
+					<h2 style="color: var(--sf-peach);">Built on markdown</h2>
+					<p style="color: var(--sf-muted); font-size: 0.78em;">Simple to write. Rich when rendered. Plain text underneath.</p>
+					<div class="example-grid">
+						<div class="example-panel fragment fade-up">
+							<h4>What you type</h4>
+							<pre># Grocery list
+
+- eggs
+- pasta
+- parmesan
+
+Call Sam about dinner on Friday.</pre>
+						</div>
+						<div class="example-panel fragment fade-up">
+							<h4>What you get</h4>
+							<p><strong>Grocery list</strong></p>
+							<ul>
+								<li>eggs</li>
+								<li>pasta</li>
+								<li>parmesan</li>
+							</ul>
+							<p>Call Sam about dinner on Friday.</p>
+						</div>
+					</div>
+					<aside class="notes">
+						One of the first things you notice about Stonefruit is that it is built on markdown.
+
+						If you are not familiar with markdown, it is just a lightweight way of typing that turns plain text into richer documents.
+
+						I chose markdown because it is based on plaintext. That makes it portable.
+
+						If you start using Stonefruit and later decide you do not like it, that is fine. There is the door. You can take all your notes with you.
+
+						It also turns out that markdown is a very model-friendly format, which matters once we start talking about automation.
+					</aside>
+				</section>
+
+				<section data-background-color="var(--sf-bg-mid)">
+					<h2 style="color: var(--sf-peach);">Run it on your own hardware</h2>
+					<div class="two-up">
+						<div class="callout fragment fade-up">
+							<h4>Private by default</h4>
+							<p>Your notes are often the most personal data you have. Stonefruit is designed so that data stays on machines you trust.</p>
+						</div>
+						<div class="callout fragment fade-up">
+							<h4>Home base</h4>
+							<p>A small server can handle sync plus the heavier automations that would be slow on a phone or laptop.</p>
+						</div>
+					</div>
+					<p class="fragment fade-up" style="color: var(--sf-muted); font-size: 0.62em; margin-top: 1.4em;">
+						visual: your Raspberry Pi or home notes server
+					</p>
+					<aside class="notes">
+						Stonefruit is also self-hosted.
+
+						My notes are precious to me, and they are private. I care who has access to them.
+
+						So I set Stonefruit up to run on your own hardware.
+
+						That machine becomes home base for sync and for some of the heavier automations that run overnight.
+
+						No calls to third parties. Nobody else gets to see your notes.
+					</aside>
+				</section>
+
+				<section data-background-gradient="radial-gradient(ellipse at center, #f1eee7, #faf9f6)" data-transition="slide">
+					<h2 style="color: var(--sf-green);">Overnight automations</h2>
+					<p class="big-quote" style="color: var(--sf-text);">
+						When you stop thinking about your notes, Stonefruit does not.
+					</p>
+					<p class="fragment fade-up" style="color: var(--sf-muted); font-size: 0.72em;">
+						The goal is to give your notes something like background cognition.
+					</p>
+					<aside class="notes">
+						This is the secret sauce.
+
+						Neurobiology tells us that even when we are not consciously thinking about a problem, our brain is still processing it in the background.
+
+						That is why good ideas sometimes show up in the shower.
+
+						I wanted to build something a little like that into Stonefruit.
+					</aside>
+				</section>
+
+				<section data-background-color="var(--sf-bg-dark)">
+					<h2 style="color: var(--sf-peach);">Semantic search</h2>
+					<div class="two-up">
+						<div class="callout fragment fade-up">
+							<h4>Simple search</h4>
+							<p>Fast, literal, and limited. Great when you already know the exact word you used.</p>
+						</div>
+						<div class="callout fragment fade-up">
+							<h4>Embedding search</h4>
+							<p>Search by meaning. Ask for "pasta recipe" and still find the note named "carbonara".</p>
+						</div>
+					</div>
+					<p class="fragment fade-up" style="color: var(--sf-muted); font-size: 0.62em; margin-top: 1.3em;">
+						visual: embedding diagram + simple search vs semantic search results
+					</p>
+					<aside class="notes">
+						LLMs are good at generating text, but they are also good at representing meaning. That is what embeddings are for.
+
+						The problem is that good embedding models can be slow on client devices, especially older phones.
+
+						So if your server has enough memory, Stonefruit can crawl your notes overnight and index them with a stronger embedding model.
+
+						That means you can search for something like "pasta recipe" and still surface the note that contains your carbonara recipe, even if the exact words do not match.
+					</aside>
+				</section>
+
+				<section data-background-color="var(--sf-bg-dark)">
+					<h2 style="color: var(--sf-peach);">Untitled no more</h2>
+					<div class="two-up">
+						<div class="callout fragment fade-up">
+							<h4>The problem</h4>
+							<p>Files need names. Humans do not always want to stop and think of one.</p>
+						</div>
+						<div class="callout fragment fade-up">
+							<h4>The automation</h4>
+							<p>Stonefruit can infer what a note is about, learn your naming style, and suggest a better title.</p>
+						</div>
+					</div>
+					<p class="fragment fade-up" style="color: var(--sf-muted); font-size: 0.62em; margin-top: 1.3em;">
+						visual: folder full of Untitled notes turning into clear titles
+					</p>
+					<aside class="notes">
+						We are also adding other automations.
+
+						One of my favorites is called "Untitled no more."
+
+						Because of how files work, every note needs a name.
+
+						Some people enjoy naming things carefully. Some people think that is a waste of time.
+
+						Fine. With this automation, Stonefruit can look at the note, understand your usual naming style, and suggest a title that is actually useful.
+					</aside>
+				</section>
+
+				<section data-background-color="var(--sf-bg-mid)">
+					<section>
+						<h2 style="color: var(--sf-peach);">Demo time</h2>
+						<p style="color: var(--sf-muted); font-size: 0.75em;">I have talked enough about it. Let me show you.</p>
+						<aside class="notes">
+							This is the handoff into the live demo.
+
+							Leave the deck here and open Stonefruit.
+						</aside>
+					</section>
+
+					<section>
+						<h3 style="color: var(--sf-accent);">Live markdown transform</h3>
+						<div class="demo-placeholder">
+							[ Live demo: write a few markdown examples, then open the rendered note ]
+						</div>
+						<aside class="notes">
+							Show a few quick markdown examples and how they render.
+						</aside>
+					</section>
+
+					<section>
+						<h3 style="color: var(--sf-accent);">Search demo</h3>
+						<div class="demo-placeholder">
+							[ Live demo: semantic search with a long descriptive phrase and a surprising match ]
+						</div>
+						<aside class="notes">
+							Show that search is still fast, but can also pick up meaning instead of just keywords.
+
+							A fun version is describing the essence of a famous poem and letting the search find it.
+						</aside>
+					</section>
+
+					<section>
+						<h3 style="color: var(--sf-accent);">Server dashboard</h3>
+						<div class="demo-placeholder">
+							[ Live demo: open dashboard and apply an auto-rename ]
+						</div>
+						<aside class="notes">
+							Show the server dashboard and trigger the rename automation.
+						</aside>
+					</section>
+				</section>
+
+				<section data-background-gradient="radial-gradient(ellipse at center, #f3ece2, #faf9f6)" data-transition="zoom">
+					<p style="color: var(--sf-muted); font-size: 0.9em;">One last thing</p>
+					<h2 class="fragment fade-up" style="color: var(--sf-peach); margin-top: 0.5em;">Plugin system</h2>
+					<p class="fragment fade-up" style="color: var(--sf-text); font-size: 0.8em; max-width: 820px; margin: 1em auto 0;">
+						You can write your own automations, package them up, and share them.
+					</p>
+					<div class="demo-placeholder fragment fade-up" style="max-width: 760px; margin: 1.2em auto 0;">
+						[ Live demo: use Claude Code and a skill file to build a new automation ]
+					</div>
+					<aside class="notes">
+						We talked about markdown and self-hosting so your server can do smart things with your notes overnight.
+
+						There is one more piece I want to mention, and that is the plugin system.
+
+						With plugins, you can build automations that fit your own workflow.
+
+						And to prove this is actually approachable, I am going to make one live using Claude Code, voice chat, and some non-deterministic tools beyond human comprehension.
+
+						I feel a little bit like a circus act right now, but it should be fun.
+					</aside>
+				</section>
+
+				<section data-background-color="var(--sf-bg-dark)" data-transition="slide">
+					<h2 style="color: var(--sf-peach);">What you get</h2>
+					<div class="platform-row">
+						<span class="platform-chip fragment fade-up">Linux</span>
+						<span class="platform-chip fragment fade-up">macOS</span>
+						<span class="platform-chip fragment fade-up">Android</span>
+						<span class="platform-chip fragment fade-up">iOS</span>
+						<span class="platform-chip fragment fade-up">Web</span>
+						<span class="platform-chip fragment fade-up">Windows</span>
+					</div>
+					<div style="max-width: 720px; margin: 1.4em auto 0; text-align: left;">
+						<p class="pitch-item fragment fade-up"><strong>Your platforms.</strong> Use it wherever you already work.</p>
+						<p class="pitch-item fragment fade-up"><strong>Your hardware.</strong> Run it locally for free, without third-party API calls.</p>
+						<p class="pitch-item fragment fade-up"><strong>Your code.</strong> It is open source and extensible.</p>
+					</div>
+					<aside class="notes">
+						So that is Stonefruit.
+
+						It runs on all your favorite platforms.
+
+						And also Windows.
+
+						It runs on your own hardware, for free, with no third-party API calls, so your data does not leave your device.
+
+						And it is open source and extensible.
+					</aside>
+				</section>
+
+				<section data-background-gradient="radial-gradient(ellipse at bottom, #f4eee5, #faf9f6)" data-transition="zoom">
+					<h2 style="color: var(--sf-peach); font-size: 1.5em;">Better tools change performance</h2>
+					<p class="big-quote fragment fade-up" style="color: var(--sf-text);">
+						Olympic athletes are still human beings. What keeps improving is the training, the feedback, and the tools around them.
+					</p>
+					<p class="fragment fade-up" style="color: var(--sf-muted); font-size: 0.62em; margin-top: 1.4em;">
+						visual: sprinter + chart of performance improving over time + training technology examples
+					</p>
+					<aside class="notes">
+						Before I go, I want to close with Olympic athletes.
+
+						Even though the human body has not changed much over the last couple thousand years, performance in many sports keeps improving.
+
+						There are a lot of reasons for that, but one of the most powerful is better training techniques and better tools.
+
+						My hope for Stonefruit, and for tools like it, is that we can do something similar for thought itself.
+
+						Not by replacing thinking, but by giving our minds better equipment.
+					</aside>
+				</section>
+
+				<section data-background-gradient="radial-gradient(ellipse at center, #f3ece2, #faf9f6)" data-transition="fade">
+					<h2 style="color: var(--sf-peach);">Thank you</h2>
+					<div class="qr-card">
+						<img class="brand-wordmark" src="assets/brand/Wordmark.svg" alt="Stonefruit" style="width: min(360px, 55vw); margin-bottom: 1em;">
+						<div class="demo-placeholder" style="margin-bottom: 1em;">
+							[ QR code ]
+						</div>
+						<p>If you would like to join me or the team at FUTO, reach out at <strong>justin@futo.org</strong>.</p>
+						<p>Links to the apps are at the QR code.</p>
+						<p>These slides are at <strong>dbe.justin.how</strong>.</p>
+					</div>
+					<aside class="notes">
+						If you would like to join me or the team at FUTO, please reach out.
+
+						You can find links to the apps at this QR code.
+
+						And the slides will be available at dbe.justin.how.
+
+						Thank you.
+					</aside>
+				</section>
+
 			</div>
 		</div>
 
@@ -27,13 +699,9 @@
 		<script src="plugin/markdown/markdown.js"></script>
 		<script src="plugin/highlight/highlight.js"></script>
 		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
 			Reveal.initialize({
 				hash: true,
-
-				// Learn about plugins: https://revealjs.com/plugins/
+				transition: 'slide',
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
 			});
 		</script>

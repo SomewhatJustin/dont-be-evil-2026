@@ -230,6 +230,28 @@
 				font-size: 0.62em;
 				color: var(--sf-text);
 			}
+			.chart-slide {
+				box-sizing: border-box;
+				padding-bottom: 0.35em;
+			}
+			.blank-slide-note {
+				color: rgba(28, 25, 23, 0.28);
+				font-size: 0.48em;
+				letter-spacing: 0.02em;
+			}
+			.chart-slide h2 {
+				font-size: 1.45em;
+				margin-bottom: 0.45em;
+				color: var(--sf-peach);
+			}
+			.chart-slide img.r-stretch {
+				display: block;
+				width: auto;
+				max-width: 100%;
+				object-fit: contain;
+				margin: 0 auto 0.35em;
+				border-radius: 12px;
+			}
 		</style>
 	</head>
 	<body>
@@ -237,6 +259,7 @@
 			<div class="slides">
 
 				<section data-background-color="var(--sf-bg-dark)" data-transition="fade">
+					<p class="blank-slide-note">This slide intentionally left blank</p>
 					<aside class="notes">
 						Thank you.
 
@@ -250,15 +273,9 @@
 					</aside>
 				</section>
 
-				<section data-background-gradient="radial-gradient(ellipse at bottom, #f4eee5, #faf9f6)" data-transition="slide">
-					<h2 style="color: var(--sf-peach);">Computers are getting more intelligent</h2>
-					<p class="big-quote" style="color: var(--sf-text);">
-						In the last three years, a browser stopped feeling like a window to the web
-						and started feeling like a doorway into a machine that can reason with you.
-					</p>
-					<p class="fragment fade-up" style="color: var(--sf-muted); font-size: 0.62em; margin-top: 1.5em;">
-						visual: scaling laws chart + neural network graphic
-					</p>
+				<section class="chart-slide" data-background-gradient="radial-gradient(ellipse at bottom, #f4eee5, #faf9f6)" data-transition="slide">
+					<h2>Computers are getting smarter.</h2>
+					<img class="r-stretch" src="assets/ai-index-benchmarks-screenshot.png" alt="AI Index chart showing technical performance benchmarks relative to human baseline from 2012 to 2024">
 					<aside class="notes">
 						If you have opened a web browser at any point in the last three years, you have felt this shift.
 
@@ -270,49 +287,15 @@
 
 				<section data-background-color="var(--sf-bg-dark)">
 					<section>
-						<h2 style="color: var(--sf-peach);">AI changed the workflow</h2>
-						<p style="color: var(--sf-muted); font-size: 0.75em;">Coding, search, writing</p>
-						<aside class="notes">
-							Once that intelligence showed up, a lot of familiar tools started behaving very differently.
-						</aside>
+						<img class="r-stretch" src="assets/claude-code-screenshot.png">
 					</section>
 
-					<section data-auto-animate>
-						<h3 style="color: var(--sf-accent);">Coding</h3>
-						<p style="font-size: 0.9em;">A lot of engineers now ship code that started as an AI draft.</p>
-						<p class="fragment fade-up" style="color: var(--sf-muted); font-size: 0.62em; margin-top: 1.2em;">
-							visual: Claude Code / agentic coding screenshot
-						</p>
-						<aside class="notes">
-							Coding is the clearest example.
-
-							For a lot of engineers, AI is no longer a novelty. It is part of the development loop. It writes code, explains code, refactors code, and sometimes writes the bug report too.
-						</aside>
+					<section>
+						<img class="r-stretch" src="assets/chatgpt-screenshot.png">
 					</section>
 
-					<section data-auto-animate>
-						<h3 style="color: var(--sf-accent);">Search</h3>
-						<p style="font-size: 0.9em;">I personally reach for Google a lot less than I used to.</p>
-						<p class="fragment fade-up" style="color: var(--sf-muted); font-size: 0.75em;">I ask a model first.</p>
-						<aside class="notes">
-							Search changed too.
-
-							I do not start with ten blue links nearly as often anymore. If I want to learn something, I usually ask a model first and refine from there.
-						</aside>
-					</section>
-
-					<section data-auto-animate>
-						<h3 style="color: var(--sf-accent);">Writing</h3>
-						<p style="font-size: 0.9em;">If you are a high school student with an essay due on <em>Jane Eyre</em>&hellip;</p>
-						<p class="fragment fade-up" style="font-size: 1.1em; color: var(--sf-peach);">No you don't.</p>
-						<p class="fragment fade-up" style="color: var(--sf-muted); font-size: 0.62em; margin-top: 1.2em;">
-							visual: prompt asking for a flawless Jane Eyre essay
-						</p>
-						<aside class="notes">
-							And of course writing changed.
-
-							If you are a high school student and you have an essay due on Jane Eyre, well... no, you do not. Not in the way previous generations did.
-						</aside>
+					<section>
+						<img class="r-stretch" src="assets/acorn-assassins.png">
 					</section>
 				</section>
 

@@ -35,3 +35,12 @@ reveal.js uses a **controller-based architecture**. The main `Deck` class (`js/r
 ## Presentation Content
 
 The actual presentation is authored in `index.html` using reveal.js HTML slide markup. Slides are `<section>` elements inside `.slides`. Nested `<section>` elements create vertical slide stacks. Key data attributes: `data-background-*`, `data-transition`, `data-auto-animate`, `data-fragment-index`.
+
+## reveal.js Layout Helpers
+
+reveal.js provides built-in CSS helper classes for sizing content within slides:
+
+- **`r-stretch`** — Makes an element expand to fill the remaining vertical space on a slide. Useful for images, videos, or containers that should use all available room after accounting for other slide content (titles, captions, etc.). Only one `r-stretch` element per slide.
+- **`r-fit-text`** — Dynamically scales text to be as large as possible without overflowing the slide. Powered by the fitty library. Can be used on multiple headings per slide.
+
+Reference: https://revealjs.com/layout/

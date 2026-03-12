@@ -84,27 +84,260 @@
 			}
 			.pillar-grid {
 				display: grid;
-				grid-template-columns: repeat(3, 1fr);
-				gap: 1.2em;
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+				gap: 1.15em;
 				text-align: left;
 				font-size: 0.62em;
 				max-width: 980px;
 				margin: 0 auto;
 			}
+			.pillar-stage {
+				position: relative;
+				max-width: 1040px;
+				margin: 1.4em auto 0;
+				padding: 1.4em;
+				border-radius: 30px;
+				background:
+					radial-gradient(circle at top, rgba(212, 160, 84, 0.12), transparent 48%),
+					linear-gradient(180deg, rgba(27, 27, 37, 0.96), rgba(17, 17, 17, 0.94));
+				border: 1px solid rgba(212, 160, 84, 0.14);
+				box-shadow: 0 28px 70px rgba(0, 0, 0, 0.34);
+				overflow: hidden;
+			}
+			.pillar-stage::before {
+				content: '';
+				position: absolute;
+				inset: 0;
+				background:
+					linear-gradient(90deg, rgba(255, 255, 255, 0.04) 0, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+					linear-gradient(rgba(255, 255, 255, 0.04) 0, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+				background-size: 34px 34px;
+				mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.36), transparent 85%);
+				pointer-events: none;
+			}
 			.pillar {
+				position: relative;
 				background: var(--sf-surface);
-				border: 1px solid var(--sf-border);
-				border-radius: 14px;
-				padding: 1em 1.1em;
+				border: 1px solid rgba(212, 160, 84, 0.16);
+				border-radius: 24px;
+				padding: 1.15em 1.1em 1em;
+				min-height: 10.8em;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				background:
+					linear-gradient(180deg, rgba(42, 41, 55, 0.98), rgba(25, 24, 34, 0.98));
+				box-shadow:
+					inset 0 1px 0 rgba(255, 255, 255, 0.05),
+					0 18px 38px rgba(0, 0, 0, 0.28);
+				overflow: hidden;
+			}
+			.pillar::before {
+				content: '';
+				position: absolute;
+				left: 1.1em;
+				right: 1.1em;
+				top: 0;
+				height: 3px;
+				border-radius: 999px;
+				background: linear-gradient(90deg, var(--sf-peach), rgba(212, 160, 84, 0.18));
+				opacity: 0.9;
+			}
+			.pillar::after {
+				content: '';
+				position: absolute;
+				inset: auto -20% -36% 45%;
+				height: 9em;
+				background: radial-gradient(circle, rgba(212, 160, 84, 0.18), transparent 70%);
+				pointer-events: none;
+				filter: blur(16px);
 			}
 			.pillar h3 {
-				margin: 0 0 0.4em 0;
-				font-size: 1.1em;
-				color: var(--sf-accent);
+				margin: 0;
+				font-size: 1.2em;
+				color: #f5ead9;
 			}
 			.pillar p {
 				margin: 0;
 				color: var(--sf-muted);
+			}
+			.pillar-head {
+				display: flex;
+				align-items: flex-start;
+				justify-content: space-between;
+				gap: 0.8em;
+				margin-bottom: 1.1em;
+			}
+			.pillar-kicker {
+				font-size: 0.62em;
+				font-weight: 700;
+				letter-spacing: 0.18em;
+				text-transform: uppercase;
+				color: rgba(230, 230, 230, 0.56);
+			}
+			.pillar-badge {
+				flex-shrink: 0;
+				min-width: 3.1em;
+				padding: 0.32em 0.72em;
+				border-radius: 999px;
+				border: 1px solid rgba(212, 160, 84, 0.24);
+				background: rgba(255, 255, 255, 0.04);
+				font-size: 0.7em;
+				font-weight: 700;
+				letter-spacing: 0.08em;
+				text-align: center;
+				color: var(--sf-accent);
+				backdrop-filter: blur(10px);
+			}
+			.pillar-copy {
+				margin-top: 0.52em;
+				font-size: 0.84em;
+				line-height: 1.45;
+				color: rgba(230, 230, 230, 0.72);
+				max-width: 22ch;
+			}
+			.pillar-meta {
+				margin-top: 1em;
+				font-size: 0.7em;
+				font-weight: 700;
+				letter-spacing: 0.08em;
+				text-transform: uppercase;
+				color: rgba(212, 160, 84, 0.72);
+			}
+			.pillar--markdown::before,
+			.pillar-detail--markdown::before {
+				background: linear-gradient(90deg, #e7bb7c, rgba(231, 187, 124, 0.18));
+			}
+			.pillar--selfhosted::before,
+			.pillar-detail--selfhosted::before {
+				background: linear-gradient(90deg, #7a9e66, rgba(122, 158, 102, 0.18));
+			}
+			.pillar--automation::before,
+			.pillar-detail--automation::before {
+				background: linear-gradient(90deg, #d4935c, rgba(212, 147, 92, 0.18));
+			}
+			.pillar-detail {
+				position: relative;
+				max-width: 860px;
+				margin: 0 auto;
+				padding: 1.55em;
+				border-radius: 28px;
+				text-align: left;
+				background:
+					radial-gradient(circle at top right, rgba(212, 160, 84, 0.14), transparent 34%),
+					linear-gradient(180deg, rgba(35, 35, 48, 0.98), rgba(21, 21, 28, 0.98));
+				border: 1px solid rgba(212, 160, 84, 0.15);
+				box-shadow:
+					inset 0 1px 0 rgba(255, 255, 255, 0.05),
+					0 28px 70px rgba(0, 0, 0, 0.34);
+				overflow: hidden;
+			}
+			.pillar-detail::before {
+				content: '';
+				position: absolute;
+				left: 1.55em;
+				right: 1.55em;
+				top: 0;
+				height: 3px;
+				border-radius: 999px;
+			}
+			.pillar-detail-header {
+				display: flex;
+				align-items: flex-start;
+				justify-content: space-between;
+				gap: 1em;
+				margin-bottom: 1.1em;
+			}
+			.pillar-detail-header h3 {
+				font-size: 1.45em;
+				margin: 0.18em 0 0;
+			}
+			.pillar-badge--detail {
+				font-size: 0.78em;
+				padding: 0.5em 0.9em;
+				min-width: 4.2em;
+			}
+			.pillar-copy--detail {
+				max-width: 40ch;
+				font-size: 0.72em;
+				line-height: 1.5;
+				margin-top: 0;
+				margin-bottom: 1.1em;
+			}
+			.pillar-demo-grid {
+				display: grid;
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				gap: 0.9em;
+			}
+			.pillar-panel {
+				background: rgba(255, 255, 255, 0.03);
+				border: 1px solid rgba(255, 255, 255, 0.07);
+				border-radius: 18px;
+				padding: 1em;
+			}
+			.pillar-panel-label {
+				display: inline-block;
+				margin-bottom: 0.75em;
+				font-size: 0.55em;
+				font-weight: 700;
+				letter-spacing: 0.16em;
+				text-transform: uppercase;
+				color: rgba(230, 230, 230, 0.48);
+			}
+			.pillar-markdown-line {
+				margin: 0;
+				font-size: 0.72em;
+				line-height: 1.5;
+				color: var(--sf-text);
+			}
+			.pillar-markdown-line--code {
+				font-family: monospace;
+			}
+			.pillar-visual {
+				background: rgba(255, 255, 255, 0.03);
+				border: 1px solid rgba(255, 255, 255, 0.07);
+				border-radius: 22px;
+				padding: 1.1em;
+				display: flex;
+				flex-direction: column;
+				gap: 0.75em;
+				align-items: center;
+			}
+			.pillar-visual img {
+				width: min(100%, 560px);
+				height: auto;
+				display: block;
+				filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.28));
+			}
+			.pillar-visual-note {
+				margin: 0;
+				font-size: 0.58em;
+				letter-spacing: 0.06em;
+				text-transform: uppercase;
+				color: rgba(230, 230, 230, 0.5);
+			}
+			.pillar-flow {
+				display: grid;
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+				gap: 0.8em;
+				margin-top: 0.5em;
+			}
+			.pillar-step {
+				padding: 0.9em 0.95em;
+				border-radius: 18px;
+				background: rgba(255, 255, 255, 0.03);
+				border: 1px solid rgba(255, 255, 255, 0.07);
+			}
+			.pillar-step strong {
+				display: block;
+				margin-bottom: 0.4em;
+				font-size: 0.82em;
+			}
+			.pillar-step span {
+				display: block;
+				font-size: 0.6em;
+				line-height: 1.45;
+				color: rgba(230, 230, 230, 0.7);
 			}
 			.idea-card {
 				background: rgba(201, 148, 74, 0.15);
@@ -202,6 +435,21 @@
 				gap: 0.6em;
 				max-width: 900px;
 				margin: 1em auto 0;
+			}
+			.alpha-badge {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				padding: 0.32em 0.85em;
+				margin: -0.35em auto 0.9em;
+				border-radius: 999px;
+				border: 1px solid rgba(212, 160, 84, 0.26);
+				background: rgba(212, 160, 84, 0.1);
+				font-size: 0.48em;
+				font-weight: 700;
+				letter-spacing: 0.16em;
+				text-transform: uppercase;
+				color: rgba(245, 234, 217, 0.9);
 			}
 			.platform-chip {
 				border: 1px solid var(--sf-border);
@@ -339,17 +587,43 @@
 				</section>
 
 				<!-- Three pillars (initial) -->
-				<section data-auto-animate data-auto-animate-easing="ease" data-background-color="var(--sf-bg-dark)">
+				<section data-auto-animate data-auto-animate-duration="0.9" data-auto-animate-easing="cubic-bezier(0.22, 1, 0.36, 1)" data-background-color="var(--sf-bg-dark)">
 					<img data-id="sf-logo" src="assets/brand/Wordmark-white.svg" alt="Stonefruit" style="width: min(480px, 60vw); height: auto; margin-bottom: 1em;">
-					<div class="pillar-grid" style="margin-top: 1.4em;">
-						<div data-id="pillar-md" class="pillar fragment fade-up">
-							<h3 data-id="pillar-md-title">Markdown</h3>
-						</div>
-						<div data-id="pillar-sh" class="pillar fragment fade-up">
-							<h3 data-id="pillar-sh-title">Self-hosted</h3>
-						</div>
-						<div data-id="pillar-auto" class="pillar fragment fade-up">
-							<h3 data-id="pillar-auto-title">Overnight automations</h3>
+					<div class="pillar-stage">
+						<div class="pillar-grid">
+							<div data-id="pillar-md" class="pillar pillar--markdown fragment fade-up" data-fragment-index="0">
+								<div class="pillar-head">
+									<p data-id="pillar-md-kicker" class="pillar-kicker">Portable format</p>
+									<div data-id="pillar-md-badge" class="pillar-badge">.md</div>
+								</div>
+								<div>
+									<h3 data-id="pillar-md-title">Markdown</h3>
+									<p data-id="pillar-md-copy" class="pillar-copy">Plain text underneath. Rich formatting when you need it.</p>
+								</div>
+								<p class="pillar-meta">Readable forever</p>
+							</div>
+							<div data-id="pillar-sh" class="pillar pillar--selfhosted fragment fade-up" data-fragment-index="1">
+								<div class="pillar-head">
+									<p data-id="pillar-sh-kicker" class="pillar-kicker">Private by default</p>
+									<div data-id="pillar-sh-badge" class="pillar-badge">LAN</div>
+								</div>
+								<div>
+									<h3 data-id="pillar-sh-title">Self-hosted</h3>
+									<p data-id="pillar-sh-copy" class="pillar-copy">Your notes stay on hardware you own and control.</p>
+								</div>
+								<p class="pillar-meta">No third-party API</p>
+							</div>
+							<div data-id="pillar-auto" class="pillar pillar--automation fragment fade-up" data-fragment-index="2">
+								<div class="pillar-head">
+									<p data-id="pillar-auto-kicker" class="pillar-kicker">Background work</p>
+									<div data-id="pillar-auto-badge" class="pillar-badge">AM</div>
+								</div>
+								<div>
+									<h3 data-id="pillar-auto-title">Overnight automations</h3>
+									<p data-id="pillar-auto-copy" class="pillar-copy">Wake up to cleaner notes, better search, and useful structure.</p>
+								</div>
+								<p class="pillar-meta">Smarter by morning</p>
+							</div>
 						</div>
 					</div>
 					<aside class="notes">
@@ -364,11 +638,26 @@
 				</section>
 
 				<!-- Markdown expands -->
-				<section data-auto-animate data-auto-animate-easing="ease" data-background-color="var(--sf-bg-dark)">
-					<div data-id="pillar-md" style="background: var(--sf-surface); border: 1px solid var(--sf-border); border-radius: 14px; padding: 1.5em; max-width: 800px; margin: 0 auto;">
-						<h3 data-id="pillar-md-title" style="color: var(--sf-accent); margin: 0 0 0.8em 0;">Markdown</h3>
-						<p style="font-size: 0.9em; color: var(--sf-text); font-family: monospace;">sorry, I **can't** make it today. There's *traffic*.</p>
-						<p class="fragment fade-up" style="font-size: 0.9em; color: var(--sf-text); margin-top: 0.8em;">sorry, I <strong>can't</strong> make it today. There's <em>traffic</em>.</p>
+				<section data-auto-animate data-auto-animate-duration="0.9" data-auto-animate-easing="cubic-bezier(0.22, 1, 0.36, 1)" data-background-color="var(--sf-bg-dark)">
+					<div data-id="pillar-md" class="pillar-detail pillar-detail--markdown">
+						<div class="pillar-detail-header">
+							<div>
+								<p data-id="pillar-md-kicker" class="pillar-kicker">Portable format</p>
+								<h3 data-id="pillar-md-title">Markdown</h3>
+							</div>
+							<div data-id="pillar-md-badge" class="pillar-badge pillar-badge--detail">.md</div>
+						</div>
+						<p data-id="pillar-md-copy" class="pillar-copy pillar-copy--detail">Human-readable, model-friendly, and easy to take with you if you ever leave.</p>
+						<div class="pillar-demo-grid">
+							<div class="pillar-panel">
+								<span class="pillar-panel-label">Source text</span>
+								<p class="pillar-markdown-line pillar-markdown-line--code">sorry, I **can't** make it today. There's *traffic*.</p>
+							</div>
+							<div class="pillar-panel fragment fade-up">
+								<span class="pillar-panel-label">Rendered meaning</span>
+								<p class="pillar-markdown-line">sorry, I <strong>can't</strong> make it today. There's <em>traffic</em>.</p>
+							</div>
+						</div>
 					</div>
 					<aside class="notes">
 						One of the first things you notice about Stonefruit is that it is built on markdown.
@@ -384,26 +673,62 @@
 				</section>
 
 				<!-- Back to three pillars (before self-hosted) -->
-				<section data-auto-animate data-auto-animate-easing="ease" data-background-color="var(--sf-bg-dark)">
+				<section data-auto-animate data-auto-animate-duration="0.9" data-auto-animate-easing="cubic-bezier(0.22, 1, 0.36, 1)" data-background-color="var(--sf-bg-dark)">
 					<img data-id="sf-logo" src="assets/brand/Wordmark-white.svg" alt="Stonefruit" style="width: min(480px, 60vw); height: auto; margin-bottom: 1em;">
-					<div class="pillar-grid" style="margin-top: 1.4em;">
-						<div data-id="pillar-md" class="pillar">
-							<h3 data-id="pillar-md-title">Markdown</h3>
-						</div>
-						<div data-id="pillar-sh" class="pillar">
-							<h3 data-id="pillar-sh-title">Self-hosted</h3>
-						</div>
-						<div data-id="pillar-auto" class="pillar">
-							<h3 data-id="pillar-auto-title">Overnight automations</h3>
+					<div class="pillar-stage">
+						<div class="pillar-grid">
+							<div data-id="pillar-md" class="pillar pillar--markdown">
+								<div class="pillar-head">
+									<p data-id="pillar-md-kicker" class="pillar-kicker">Portable format</p>
+									<div data-id="pillar-md-badge" class="pillar-badge">.md</div>
+								</div>
+								<div>
+									<h3 data-id="pillar-md-title">Markdown</h3>
+									<p data-id="pillar-md-copy" class="pillar-copy">Plain text underneath. Rich formatting when you need it.</p>
+								</div>
+								<p class="pillar-meta">Readable forever</p>
+							</div>
+							<div data-id="pillar-sh" class="pillar pillar--selfhosted">
+								<div class="pillar-head">
+									<p data-id="pillar-sh-kicker" class="pillar-kicker">Private by default</p>
+									<div data-id="pillar-sh-badge" class="pillar-badge">LAN</div>
+								</div>
+								<div>
+									<h3 data-id="pillar-sh-title">Self-hosted</h3>
+									<p data-id="pillar-sh-copy" class="pillar-copy">Your notes stay on hardware you own and control.</p>
+								</div>
+								<p class="pillar-meta">No third-party API</p>
+							</div>
+							<div data-id="pillar-auto" class="pillar pillar--automation">
+								<div class="pillar-head">
+									<p data-id="pillar-auto-kicker" class="pillar-kicker">Background work</p>
+									<div data-id="pillar-auto-badge" class="pillar-badge">AM</div>
+								</div>
+								<div>
+									<h3 data-id="pillar-auto-title">Overnight automations</h3>
+									<p data-id="pillar-auto-copy" class="pillar-copy">Wake up to cleaner notes, better search, and useful structure.</p>
+								</div>
+								<p class="pillar-meta">Smarter by morning</p>
+							</div>
 						</div>
 					</div>
 				</section>
 
 				<!-- Self-hosted expands -->
-				<section data-auto-animate data-auto-animate-easing="ease" data-background-color="var(--sf-bg-dark)">
-					<div data-id="pillar-sh" style="background: var(--sf-surface); border: 1px solid var(--sf-border); border-radius: 14px; padding: 1.5em; max-width: 800px; margin: 0 auto;">
-						<h3 data-id="pillar-sh-title" style="color: var(--sf-accent); margin: 0 0 0.8em 0;">Self-hosted</h3>
-						<img src="assets/raspberry-pi.png" alt="Raspberry Pi 5" style="max-height: 45vh; display: block; margin: 0 auto;">
+				<section data-auto-animate data-auto-animate-duration="0.9" data-auto-animate-easing="cubic-bezier(0.22, 1, 0.36, 1)" data-background-color="var(--sf-bg-dark)">
+					<div data-id="pillar-sh" class="pillar-detail pillar-detail--selfhosted">
+						<div class="pillar-detail-header">
+							<div>
+								<p data-id="pillar-sh-kicker" class="pillar-kicker">Private by default</p>
+								<h3 data-id="pillar-sh-title">Self-hosted</h3>
+							</div>
+							<div data-id="pillar-sh-badge" class="pillar-badge pillar-badge--detail">LAN</div>
+						</div>
+						<p data-id="pillar-sh-copy" class="pillar-copy pillar-copy--detail">Sync, search, and background jobs run on a machine you own, so your notes stay under your control.</p>
+						<div class="pillar-visual">
+							<img src="assets/raspberry-pi.png" alt="Raspberry Pi 5" style="max-height: 42vh;">
+							<p class="pillar-visual-note">Pi 5, minis, or any box with enough memory</p>
+						</div>
 					</div>
 					<aside class="notes">
 						Stonefruit is also self-hosted.
@@ -419,25 +744,72 @@
 				</section>
 
 				<!-- Back to three pillars (before overnight) -->
-				<section data-auto-animate data-auto-animate-easing="ease" data-background-color="var(--sf-bg-dark)">
+				<section data-auto-animate data-auto-animate-duration="0.9" data-auto-animate-easing="cubic-bezier(0.22, 1, 0.36, 1)" data-background-color="var(--sf-bg-dark)">
 					<img data-id="sf-logo" src="assets/brand/Wordmark-white.svg" alt="Stonefruit" style="width: min(480px, 60vw); height: auto; margin-bottom: 1em;">
-					<div class="pillar-grid" style="margin-top: 1.4em;">
-						<div data-id="pillar-md" class="pillar">
-							<h3 data-id="pillar-md-title">Markdown</h3>
-						</div>
-						<div data-id="pillar-sh" class="pillar">
-							<h3 data-id="pillar-sh-title">Self-hosted</h3>
-						</div>
-						<div data-id="pillar-auto" class="pillar">
-							<h3 data-id="pillar-auto-title">Overnight automations</h3>
+					<div class="pillar-stage">
+						<div class="pillar-grid">
+							<div data-id="pillar-md" class="pillar pillar--markdown">
+								<div class="pillar-head">
+									<p data-id="pillar-md-kicker" class="pillar-kicker">Portable format</p>
+									<div data-id="pillar-md-badge" class="pillar-badge">.md</div>
+								</div>
+								<div>
+									<h3 data-id="pillar-md-title">Markdown</h3>
+									<p data-id="pillar-md-copy" class="pillar-copy">Plain text underneath. Rich formatting when you need it.</p>
+								</div>
+								<p class="pillar-meta">Readable forever</p>
+							</div>
+							<div data-id="pillar-sh" class="pillar pillar--selfhosted">
+								<div class="pillar-head">
+									<p data-id="pillar-sh-kicker" class="pillar-kicker">Private by default</p>
+									<div data-id="pillar-sh-badge" class="pillar-badge">LAN</div>
+								</div>
+								<div>
+									<h3 data-id="pillar-sh-title">Self-hosted</h3>
+									<p data-id="pillar-sh-copy" class="pillar-copy">Your notes stay on hardware you own and control.</p>
+								</div>
+								<p class="pillar-meta">No third-party API</p>
+							</div>
+							<div data-id="pillar-auto" class="pillar pillar--automation">
+								<div class="pillar-head">
+									<p data-id="pillar-auto-kicker" class="pillar-kicker">Background work</p>
+									<div data-id="pillar-auto-badge" class="pillar-badge">AM</div>
+								</div>
+								<div>
+									<h3 data-id="pillar-auto-title">Overnight automations</h3>
+									<p data-id="pillar-auto-copy" class="pillar-copy">Wake up to cleaner notes, better search, and useful structure.</p>
+								</div>
+								<p class="pillar-meta">Smarter by morning</p>
+							</div>
 						</div>
 					</div>
 				</section>
 
 				<!-- Overnight automations expands -->
-				<section data-auto-animate data-auto-animate-easing="ease" data-background-color="var(--sf-bg-dark)">
-					<div data-id="pillar-auto" style="background: var(--sf-surface); border: 1px solid var(--sf-border); border-radius: 14px; padding: 1.5em; max-width: 800px; margin: 0 auto;">
-						<h3 data-id="pillar-auto-title" style="color: var(--sf-accent); margin: 0;">Overnight automations</h3>
+				<section data-auto-animate data-auto-animate-duration="0.9" data-auto-animate-easing="cubic-bezier(0.22, 1, 0.36, 1)" data-background-color="var(--sf-bg-dark)">
+					<div data-id="pillar-auto" class="pillar-detail pillar-detail--automation">
+						<div class="pillar-detail-header">
+							<div>
+								<p data-id="pillar-auto-kicker" class="pillar-kicker">Background work</p>
+								<h3 data-id="pillar-auto-title">Overnight automations</h3>
+							</div>
+							<div data-id="pillar-auto-badge" class="pillar-badge pillar-badge--detail">AM</div>
+						</div>
+						<p data-id="pillar-auto-copy" class="pillar-copy pillar-copy--detail">Stonefruit can do the heavy lifting while you sleep, then hand back a workspace that already feels organized.</p>
+						<div class="pillar-flow">
+							<div class="pillar-step">
+								<strong>Index</strong>
+								<span>Build better semantic search while the device is idle.</span>
+							</div>
+							<div class="pillar-step">
+								<strong>Extract</strong>
+								<span>Pull tasks, entities, and structure out of messy notes.</span>
+							</div>
+							<div class="pillar-step">
+								<strong>Surface</strong>
+								<span>Show useful links and suggestions by morning.</span>
+							</div>
+						</div>
 					</div>
 					<aside class="notes">
 						This is the secret sauce.
@@ -462,9 +834,6 @@
 								</div>
 								<div style="padding: 0.3em 0.2em; border-bottom: 1px solid var(--sf-border);">
 									<p style="font-size: 0.75em; color: var(--sf-text); margin: 0;">Navy Seal Copy<span style="color: var(--sf-peach);">pasta</span></p>
-								</div>
-								<div style="padding: 0.3em 0.2em;">
-									<p style="font-size: 0.75em; color: var(--sf-text); margin: 0;">Grandma's <span style="color: var(--sf-peach);">Recipe</span> for Cough Syrup</p>
 								</div>
 							</div>
 						</div>
@@ -504,6 +873,7 @@
 
 				<section data-background-color="var(--sf-bg-dark)" data-transition="slide">
 					<img src="assets/brand/Wordmark-white.svg" alt="Stonefruit" style="width: min(480px, 60vw); height: auto; margin-bottom: 1.2em;">
+					<div class="alpha-badge">Early alpha</div>
 					<div class="platform-row fragment fade-up">
 						<span class="platform-chip">Linux</span>
 						<span class="platform-chip">macOS</span>
